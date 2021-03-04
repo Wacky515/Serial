@@ -10,22 +10,24 @@
 # Copyright:   (c) SkyDog 2016
 # Licence:     SDS10010
 # -----------------------------------------------------------------------------
+""" シリアル通信 処理 """
 
 # モジュールインポート
 # import os
 import sys
-try:
-    sys.path.append("D:¥OneDrive¥Biz¥Python¥Serial")
-    import serialcommun as sc
-except:
-    sys.path.append("/Users/wacky515/OneDrive/Biz/Python/Serial")
-    import serialcommun as sc
+# try:
+#     sys.path.append("D:¥OneDrive¥Biz¥Python¥Serial")
+#     import serialcommun as sc
+# except:
+#     sys.path.append("/Users/wacky515/OneDrive/Biz/Python/Serial")
+#     import serialcommun as sc
 
-# sysモジュール リロード
-reload(sys)
-
-# デフォルトの文字コード 出力
-sys.setdefaultencoding("utf-8")
+# Python2 用設定
+if sys.version_info.major == 2:
+    # sysモジュール リロード
+    reload(sys)
+    # デフォルトの文字コード 出力
+    sys.setdefaultencoding("utf-8")
 
 
 class SerialCom:
@@ -48,15 +50,15 @@ class SerialCom:
                  writeTimeout=None,
                  dsrdtr=None)
 
-        print("Port: {}".format(com.portstr))
-        com.write("{}\r\n".format(text))
+        print(">> Port: {}".format(com.portstr))
+        com.write(" >> {}\r\n".format(text))
         com.close()
 
     def receive(self, port_no):
         """ シリアル通信のデータを受信 """
         com = sc(port_no - 1)
 
-        print("Port: {}".format(com.portstr))
+        print(">> Port: {}".format(com.portstr))
         while True:
             data = com.readline()
             char = data.decode("utf-8")
