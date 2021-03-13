@@ -7,31 +7,28 @@
 # Author:      Kilo11
 #
 # Created:     20/06/2016
+# Last Change: 2021/03/13 20:16:37.
 # Copyright:   (c) SkyDog 2016
 # Licence:     SDS10010
 # -----------------------------------------------------------------------------
 """ シリアル通信 処理 """
 
 # モジュールインポート
-# import os
 import sys
-# try:
-#     sys.path.append("D:¥OneDrive¥Biz¥Python¥Serial")
-#     import serialcommun as sc
-# except:
-#     sys.path.append("/Users/wacky515/OneDrive/Biz/Python/Serial")
-#     import serialcommun as sc
+import importlib
+import serialcommun as sc
 
 # Python2 用設定
 if sys.version_info.major == 2:
     # sysモジュール リロード
-    reload(sys)
+    importlib.reload(sys)
     # デフォルトの文字コード 出力
     sys.setdefaultencoding("utf-8")
 
 
 class SerialCom:
     """ シリアル通信クラス """
+
     def __init__(self):
         pass
 
@@ -70,6 +67,7 @@ def main():
     src = SerialCom()
     src.send_tsc("Test", 1)
     src.receive(2)
+
 
 if __name__ == "__main__":
     main()
